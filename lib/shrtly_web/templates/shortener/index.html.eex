@@ -1,0 +1,7 @@
+<%= form_for @changeset, Routes.shortener_path(@conn, :create), fn f -> %>
+  <div class="shorten-form">
+	  <%= text_input f, :url, placeholder: "URL" %>
+		<%= submit "Shorten" %>
+		<%= error_tag f, :url %>
+	</div>
+<% end %>

@@ -10,6 +10,10 @@ defmodule Shrtly.Shortener do
     Repo.get_by!(Url, %{:code => code})
   end
 
+  def change_url(%Url{} = url, params) do
+    Url.changeset(url, params)
+  end
+
   def create_url(attrs \\ %{}) do
     %Url{}
     |> Url.changeset(attrs)

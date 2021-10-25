@@ -17,7 +17,8 @@ defmodule ShrtlyWeb.Router do
   scope "/", ShrtlyWeb do
     pipe_through :browser
 
-    get "/", PageController, :index
+    get "/", ShortenerController, :index
+    post "/", ShortenerController, :create
   end
 
   # Other scopes may use custom stacks.
