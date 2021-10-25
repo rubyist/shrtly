@@ -13,6 +13,11 @@ defmodule Shrtly.Shortener.Url do
     timestamps()
   end
 
+  def create_changeset(url, attrs) do
+    url
+    |> cast(attrs, [:url])
+  end
+
   def changeset(url, attrs) do
     url
     |> cast(attrs, [:url])

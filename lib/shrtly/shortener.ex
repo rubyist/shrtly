@@ -15,7 +15,7 @@ defmodule Shrtly.Shortener do
   end
 
   def change_url(%Url{} = url, params) do
-    Url.changeset(url, params)
+    Url.create_changeset(url, params)
   end
 
   def create_url(attrs \\ %{}) do
