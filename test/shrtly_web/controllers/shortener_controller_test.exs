@@ -29,4 +29,16 @@ defmodule ShrtlyWeb.ShortenerControllerTest do
       get(conn, "/url/42")
     end
   end
+
+  test "GET /:code redirects to expanded URL", %{conn: conn} do
+    {:ok, url} = Shrtly.Shortener.create_url(%{url: "https://google.com"})
+    conn = get(conn, "/#{url.code}")
+    assert redirected_to(conn) == "https://google.com"
+  end
+
+  test "GET /:code sends a 404 for non existing URL", %{conn: conn} do
+    assert_error_sent :not_found, fn ->
+      get(conn, "/XYZ")
+    end
+  end
 end

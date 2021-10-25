@@ -23,4 +23,9 @@ defmodule ShrtlyWeb.ShortenerController do
     url = Shortener.get_url(id)
     render(conn, "show.html", url: url)
   end
+
+  def redir(conn, %{"code" => code}) do
+    url = Shortener.get_url_by_code(code)
+    redirect(conn, external: url.url)
+  end
 end
