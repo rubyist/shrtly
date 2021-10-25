@@ -19,6 +19,8 @@ defmodule Shrtly.ShortenerTest do
     test "with valid data" do
       {:ok, url} = Shrtly.Shortener.create_url(%{url: "https://google.com"})
       assert url.url == "https://google.com"
+      assert url.code != nil
+      assert url.code != ""
     end
 
     test "with no url" do
