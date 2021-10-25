@@ -24,5 +24,9 @@ defmodule Shrtly.ShortenerTest do
     test "with no url" do
       assert {:error, %Ecto.Changeset{}} = Shrtly.Shortener.create_url(%{})
     end
+
+    test "with invalid url" do
+      assert {:error, %Ecto.Changeset{}} = Shrtly.Shortener.create_url(%{url: "google.com"})
+    end
   end
 end

@@ -13,5 +13,6 @@ defmodule Shrtly.Shortener.Url do
     url
     |> cast(attrs, [:url])
     |> validate_required([:url])
+    |> validate_format(:url, ~r/^https?:\/\/.+/)
   end
 end
