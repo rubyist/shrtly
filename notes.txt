@@ -1,0 +1,29 @@
+Welcome to shrt.ly!
+
+## Setup
+
+shrt.ly is a standard Phoenix app, using the following versions:
+
+elixir 1.12.3
+erlang 24.0.3
+phoenix 1.6.2
+
+The only external dependency is the postgres database.
+To configure the database, just ensure the credentials on `config/dev.exs` are correct.
+
+The standard make targets can then be used:
+
+`make setup`
+`make test`
+`make server`
+
+## Design
+
+The design is pretty straight forward. It relies on a Postgres sequence to generate
+a sequence of integers that each URL record can use. When the next sequence has been
+retrieved, we binary encode the integer value and run it through a base 64 encoder.
+This gives us reasonably small slugs for a large number of URLs in a URL safe character
+set.
+
+For an even better time, I've provided a fun encoder that generates slugs using a set
+of emoji faces, because why not!?
