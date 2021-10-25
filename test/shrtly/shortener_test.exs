@@ -15,6 +15,20 @@ defmodule Shrtly.ShortenerTest do
     end
   end
 
+  describe "get_url_by_code/1" do
+    test "finds existing url by code" do
+      {:ok, url} = Shrtly.Shortener.create_url(%{url: "https://google.com"})
+      found_url = Shrtly.Shortener.get_url_by_code(url.code)
+      assert found_url.id == url.id
+    end
+
+    test "for non existing code" do
+      assert_raise Ecto.NoResultsError, fn ->
+        Shrtly.Shortener.get_url_by_code("XYZ")
+      end
+    end
+  end
+
   describe "create_url/1" do
     test "with valid data" do
       {:ok, url} = Shrtly.Shortener.create_url(%{url: "https://google.com"})
