@@ -29,12 +29,28 @@ defmodule Shrtly.ShortenerTest do
     end
   end
 
+  describe "get_url_by_fun_code/1" do
+    test "finds an existing url by fun code" do
+      {:ok, url} = Shrtly.Shortener.create_url(%{url: "https://google.com"})
+      found_url = Shrtly.Shortener.get_url_by_fun_code(url.fun_code)
+      assert found_url.id == url.id
+    end
+
+    test "for non existing fun code" do
+      assert_raise Ecto.NoResultsError, fn ->
+        Shrtly.Shortener.get_url_by_fun_code("😫")
+      end
+    end
+  end
+
   describe "create_url/1" do
     test "with valid data" do
       {:ok, url} = Shrtly.Shortener.create_url(%{url: "https://google.com"})
       assert url.url == "https://google.com"
       assert url.code != nil
       assert url.code != ""
+      assert url.fun_code != nil
+      assert url.fun_code != ""
     end
 
     test "with no url" do

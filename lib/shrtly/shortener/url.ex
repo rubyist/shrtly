@@ -3,10 +3,12 @@ defmodule Shrtly.Shortener.Url do
   import Ecto.Changeset
 
   alias Shrtly.Shortener.ShortCode
+  alias Shrtly.Shortener.FunCode
 
   schema "urls" do
     field :url, :string
     field :code, :string
+    field :fun_code, :string
 
     timestamps()
   end
@@ -23,6 +25,7 @@ defmodule Shrtly.Shortener.Url do
     id = get_next_id()
     changeset
     |> put_change(:code, ShortCode.generate(id))
+    |> put_change(:fun_code, FunCode.generate(id))
   end
 
   defp get_next_id do

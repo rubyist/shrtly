@@ -25,7 +25,12 @@ defmodule ShrtlyWeb.ShortenerController do
   end
 
   def redir(conn, %{"code" => code}) do
-    url = Shortener.get_url_by_code(code)
+    url = cond do
+      String.match?(code, ~r/[^\x{0000}-\x{007F}]+/) ->
+        Shortener.get_url_by_fun_code(code)
+      true ->
+        Shortener.get_url_by_code(code)
+    end
     redirect(conn, external: url.url)
   end
 end
