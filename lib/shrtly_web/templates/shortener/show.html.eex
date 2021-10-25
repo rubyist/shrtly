@@ -1,0 +1,9 @@
+<div id="shortened">
+  <div id="url">
+	  <small><%= @url.url %></small>
+	</div>
+	<div>
+	  <p><strong>Shortened URL</strong></p>
+		<span id="link"><%= link "#{Routes.shortener_url(@conn, :index)}#{@url.code}", to: Routes.shortener_path(@conn, :redir, @url.code) %></span>
+	</div>
+</div>

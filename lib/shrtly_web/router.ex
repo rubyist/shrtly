@@ -19,6 +19,8 @@ defmodule ShrtlyWeb.Router do
 
     get "/", ShortenerController, :index
     post "/", ShortenerController, :create
+    get "/url/:id", ShortenerController, :show
+    get "/:code", ShortenerController, :redir
   end
 
   # Other scopes may use custom stacks.
