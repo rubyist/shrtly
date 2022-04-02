@@ -10,4 +10,8 @@ defmodule Shrtly do
   def foo do
     "Hello!"
   end
+
+  def bar do
+    "World!"
+  end
 end
