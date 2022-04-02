@@ -14,4 +14,8 @@ defmodule Shrtly do
   def bar do
     "World!"
   end
+
+  def baz do
+    "Baz"
+  end
 end
