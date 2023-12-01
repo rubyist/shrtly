@@ -18,7 +18,9 @@ defmodule Shrtly.Shortener do
     Url.create_changeset(url, params)
   end
 
+  @doc "create the url"
   def create_url(attrs \\ %{}) do
+    # Create the url
     %Url{}
     |> Url.changeset(attrs)
     |> Repo.insert()
