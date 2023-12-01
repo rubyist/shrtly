@@ -17,11 +17,13 @@ Create the URL
 <!-- NOTE-swimm-snippet: the lines below link your snippet to Swimm -->
 ### 📄 lib/shrtly/shortener.ex
 ```elixir
-21       def create_url(attrs \\ %{}) do
-22         %Url{}
-23         |> Url.changeset(attrs)
-24         |> Repo.insert()
-25       end
+21       @doc "create the url"
+22       def create_url(attrs \\ %{}) do
+23         # Create the url
+24         %Url{}
+25         |> Url.changeset(attrs)
+26         |> Repo.insert()
+27       end
 ```
 
 <br/>
